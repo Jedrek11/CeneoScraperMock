@@ -50,34 +50,57 @@
         <div class="row">
             <div class="col-6">
                 <canvas id="stars"></canvas>
-                <script>
-                    const data = [
-                        { stars: 0.0, count: 0 },
-                        { stars: 0.5, count: 3 },
-                        { stars: 1.0, count: 1 },
-                        { stars: 1.5, count: 2 },
-                        { stars: 2.0, count: 1 },
-                        { stars: 2.5, count: 0 },
-                        { stars: 3.0, count: 5 },
-                        { stars: 3.5, count: 3 },
-                        { stars: 4.0, count: 19 },
-                        { stars: 4.5, count: 19 },
-                        { stars: 5.0, count: 79 },
-                    ];
 
+                <script>
+                    const dataRecommendation = [
+                        { recommendation: "Polecam", count: 19, bgcolor: "#BDFCC9", bgborder: "#228B21"},
+                        { recommendation: "Brak opinii", count: 5, bgcolor: "#B0E0E6", bgborder: "#4682B1"},
+                        { recommendation: "Nie Polecam", count: 3, bgcolor: "#FFB6C1", bgborder: "#DC143C"},
+                //   const data = [
+                //         { stars: 0.0, count: 0, bgcolor: "#FFB6C1", bgborder: "#DC143C"},
+                //         { stars: 0.5, count: 3, bgcolor: "#FFB6C1", bgborder: "#DC143C"},
+                //         { stars: 1.0, count: 1, bgcolor: "#FFB6C1", bgborder: "#DC143C"},
+                //         { stars: 1.5, count: 2, bgcolor: "#FFB6C1", bgborder: "#DC143C"},
+                //         { stars: 2.0, count: 1, bgcolor: "#FFB6C1", bgborder: "#DC143C"},
+                //         { stars: 2.5, count: 0, bgcolor: "#FFB6C1", bgborder: "#DC143C"},
+                //         { stars: 3.0, count: 5, bgcolor: "#B0E0E6", bgborder: "#4682B4"},
+                //         { stars: 3.5, count: 3, bgcolor: "#B0E0E6", bgborder: "#4682B4"},
+                //         { stars: 4.0, count: 19, bgcolor: "#BDFCC9", bgborder: "#228B22"},
+                //         { stars: 4.5, count: 19, bgcolor: "#BDFCC9", bgborder: "#228B22"},
+                //         { stars: 5.0, count: 79, bgcolor: "#BDFCC9", bgborder: "#228B22"},
+                    ];
                     new Chart(
                         document.getElementById('stars'),
                         {
-                            type: 'bar',
+                            type: 'doughnut', //bar
                             data: {
-                                labels: data.map(row => row.stars),
+                                labels: dataRecommendation.map(row => row.recommendation),
                                 datasets: [
                                     {
                                         label: 'Liczba opinii',
-                                        data: data.map(row => row.count)
+                                        data: dataRecommendation.map(row => row.count),
+                                        backgroundColor: dataRecommendation.map(row => row.bgcolor),
+                                        borderColor: dataRecommendation.map(row => row.bgborder),
+                                        borderWidth: 1
                                     }
                                 ]
                             },
+                    // new Chart(
+                    //     document.getElementById('stars'),
+                    //     {
+                    //         type: 'bar', //bar
+                    //         data: {
+                    //             labels: data.map(row => row.stars),
+                    //             datasets: [
+                    //                 {
+                    //                     label: 'Liczba opinii',
+                    //                     data: data.map(row => row.count),
+                    //                     backgroundColor: data.map(row => row.bgcolor),
+                    //                     borderColor: data.map(row => row.bgborder),
+                    //                     borderWidth: 1
+                    //                 }
+                    //             ]
+                    //         },
                             options: {
                                 plugins: {
                                     legend: {
@@ -85,23 +108,24 @@
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Rozkład liczby gwiazdek w opiniach konsumentów'
+                                        text: 'Rozkład Opini według poleceń lub braku poleceń'
+                                        // text: 'Rozkład liczby gwiazdek w opiniach konsumentów'
                                     }
                                 },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Liczba gwiazdek'
-                                        }
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Liczba opinii'
-                                        }
-                                    }
-                                },
+                                // scales: {
+                                //     x: {
+                                //         title: {
+                                //             display: true,
+                                //             text: 'Liczba gwiazdek'
+                                //         }
+                                //     },
+                                //     y: {
+                                //         title: {
+                                //             display: true,
+                                //             text: 'Liczba opinii'
+                                //         }
+                                //   }
+                                // },
                             },
                         }
                     );
